@@ -1,3 +1,3 @@
-module example.com/jcw-1a
+module AOC2022
 
 go 1.19
