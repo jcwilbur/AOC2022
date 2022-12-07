@@ -34,10 +34,8 @@ func sevenB(inputStrings []string) {
 }
 
 func calculateAnswerForSevenB(nodeToSearch Node, spaceToClear int, currentBestBet Node) Node {
-
-	//create table of directories and sizes
 	if nodeToSearch.Children == nil {
-		//I'm a file, so don't add anything to total
+		//I'm a file, so don't do anything
 	} else {
 		//I'm a directory, so see if I'm a better fit than the current Node
 		if nodeToSearch.Size >= spaceToClear && nodeToSearch.Size < currentBestBet.Size {
@@ -78,7 +76,6 @@ func calculateAnswerForSevenA(directoryTree Node, runningTotal int) int {
 			fmt.Println("done searching child node " + child.Name + " running total is " + strconv.Itoa(runningTotal))
 		}
 	}
-
 	return runningTotal
 }
 
@@ -92,7 +89,7 @@ func buildTree(inputStrings []string) Node {
 		case "$":
 			switch lineSections[1] {
 			case "cd":
-				//"cd command")
+				//cd command
 				switch lineSections[2] {
 				case "/":
 					currentNode = &root
@@ -112,31 +109,28 @@ func buildTree(inputStrings []string) Node {
 						panic("directory not found")
 					}
 				}
-
 			case "ls":
 				//"ls command - ignore?")
 				//do nothing?
 			}
 		case "dir":
-			//"directory")
+			//directory
 			newNode := Node{Size: 0, Name: lineSections[1], Parent: currentNode}
 			currentNode.Children = append(currentNode.Children, &newNode)
 		default:
-			//"file")
-
+			//file
 			size, err := strconv.Atoi(lineSections[0])
 			if err != nil {
 				panic("NaN")
 			}
 			newNode := Node{Size: size, Name: lineSections[1], Parent: currentNode}
 			currentNode.Children = append(currentNode.Children, &newNode)
-			//TODO: cascade up file size
+			//cascade up file size
 			adderNode := currentNode
 			for adderNode != nil {
 				adderNode.Size += size
 				adderNode = adderNode.Parent
 			}
-
 		}
 	}
 	return root
