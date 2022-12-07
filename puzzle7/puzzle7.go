@@ -27,8 +27,7 @@ func sevenB(inputStrings []string) {
 	directoryTree := buildTree(inputStrings)
 	spaceAvailable := totalSpace - directoryTree.Size
 	spaceToClear := spaceNeeded - spaceAvailable
-	bestBet := directoryTree
-	answer := calculateAnswerForSevenB(directoryTree, spaceToClear, bestBet)
+	answer := calculateAnswerForSevenB(directoryTree, spaceToClear, directoryTree)
 	fmt.Println(answer.Name)
 	fmt.Println(answer.Size)
 }
