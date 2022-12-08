@@ -1,0 +1,35 @@
+for _, treeRow := range treeMatrix { //for each row of trees
+	maxHeight := 0
+	for _, tree := range treeRow {
+		if tree.height > maxHeight {
+			maxHeight = tree.height
+			treeMatrix[tree.rowIndex][tree.colIndex].isVisible = true
+		}
+	}
+}
+
+//scan for visible from right
+for _, treeRow := range treeMatrix { //for each row of trees
+	maxHeight := 0
+	for _, tree := range treeRow {
+		if tree.height > maxHeight {
+			maxHeight = tree.height
+			treeMatrix[tree.rowIndex][tree.colIndex].isVisible = true
+		}
+	}
+}
+
+
+
+
+---
+
+for i := len(treeMatrix)-1; i >=0; i-- {
+	maxHeight := 0
+	for j := 0; j < len(treeMatrix[i]); j++ {
+		if treeMatrix[i][j].height > maxHeight {
+			maxHeight = treeMatrix[i][j].height
+			treeMatrix[i][j].isVisible = true
+		}
+	}
+}
